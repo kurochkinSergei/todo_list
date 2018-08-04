@@ -1,13 +1,14 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import './App.css'
-import ToDoList from './ToDoList'
+import ToDoList from './todo_list'
+import Header from './header'
 
 var destination = document.querySelector('#root')
 
 ReactDOM.render(
     <div>
-        <p>What ToDo?</p>
+        <Header/>
         <ToDoList/>
     </div>,
     destination

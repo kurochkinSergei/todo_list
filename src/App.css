@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css?family=Julius+Sans+One|Raleway");
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -41,5 +42,54 @@ table {
   border-spacing: 0; }
 
 body {
+  font-family: "Raleway", sans-serif;
+  background-color: #FCFBFE; }
+
+h1 {
+  font-size: 24px; }
+
+h2 {
+  font-size: 18px; }
+
+header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   padding: 30px;
-  background-color: #626262; }
+  margin-bottom: 30px;
+  background-color: #f8efe8;
+  border-bottom: 5px solid #ecd3c0; }
+  header .title {
+    font-size: 36px;
+    margin-bottom: 10px;
+    font-family: "Julius Sans One", sans-serif; }
+
+.todo-list {
+  display: flex;
+  justify-content: center; }
+  .todo-list .new-task .title-input {
+    margin-right: 10px;
+    background-color: #FCFBFE;
+    font-size: 18px;
+    color: #626262;
+    text-align: center;
+    height: 40px;
+    font-family: "Raleway", sans-serif;
+    outline: none;
+    border: 0;
+    border-bottom: 2px solid #6f6f6f; }
+  .todo-list .new-task .submit-task-button {
+    font-size: 24px;
+    color: #e2e2e2;
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    background-color: #459640;
+    border: 0;
+    box-shadow: 2px 2px #357231; }
+    .todo-list .new-task .submit-task-button:focus {
+      outline: 0; }
+    .todo-list .new-task .submit-task-button:active {
+      box-shadow: 0px 0px #357231;
+      transform: translate(2px, 2px);
+      border-bottom: 0; }

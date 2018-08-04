@@ -1,0 +1,41 @@
+.todo-list {
+    display: flex;
+    justify-content: center;
+
+    .new-task {
+        //background-color: lighten($parchment, 10%);
+
+        & .title-input {
+            margin-right: 10px;
+            background-color: $white-lilac;
+            font-size: 18px;
+            color: $dove-gray;
+            text-align: center;
+            height: 40px;
+            font-family: $raleway;
+            outline: none;
+            border: 0;
+            border-bottom: 2px solid lighten($dove-gray,5%);
+        }
+        
+        & .submit-task-button {
+            font-size: 24px;
+            color: lighten($dove-gray, 50%);
+            width: 40px;
+            height: 40px;
+            border-radius: 20px;
+            background-color: $green;
+            border: 0;
+            box-shadow: 2px 2px darken($green, 10%);
+            
+            &:focus {
+                outline: 0;
+            }
+            &:active {
+                box-shadow: 0px 0px darken($green, 10%);
+                transform: translate(2px,2px);
+                border-bottom: 0;
+            }
+        }
+    }
+}
