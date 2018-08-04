@@ -1,11 +1,12 @@
 .button {
     font-size: 24px;
-    color: lighten($dove-gray, 50%);
+    color: darken($white-lilac, 5%);
+    // color: lighten($dove-gray, 40%);
     width: 40px;
     height: 40px;
     border-radius: 20px;
     border: 0;
-    background-color: lighten($dove-gray, 50%);
+    //background-color: lighten($dove-gray, 50%);
     box-shadow: 2px 2px lighten($dove-gray, 10%);
     user-select: none;
     cursor: pointer;
@@ -21,8 +22,8 @@
     }
 
     &_green {
-        background-color: $green;
-        box-shadow: 2px 2px darken($green, 10%);
+        background-color: lighten($green, 10%);
+        box-shadow: 2px 2px $green;
 
         &:active {
             box-shadow: 0px 0px darken($red, 10%);
@@ -30,25 +31,26 @@
     }
     
     &_red {
-        background-color: $red;
-        box-shadow: 2px 2px darken($red, 10%);
+        background-color: lighten($red, 10%);
+        box-shadow: 2px 2px $red;
         
         &:active {
-            box-shadow: 0px 0px darken($red, 10%);
+            box-shadow: 0px 0px $red;
         }
     }
 
     &_blue {
         color: $dove-gray;
-        background-color: #B9CCE4;
-        box-shadow: 2px 2px darken(#B9CCE4, 10%);
+        background-color: $periwinkle-gray;
+        box-shadow: 2px 2px darken($periwinkle-gray, 10%);
         
         &:active {
-            box-shadow: 0px 0px darken($red, 10%);
+            box-shadow: 0px 0px darken($periwinkle-gray, 10%);
         }
     }
 
     &_disabled {
+        opacity: 0.5;
         color: lighten($dove-gray, 40%);
         cursor: default;
         &:active {

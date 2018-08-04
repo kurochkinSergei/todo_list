@@ -26,14 +26,36 @@
         color: $dove-gray;
         margin: 30px;
         width: 50%;
+        
         & .task {
+            text-align: center;
+            min-width: 200px;
+            height: 40px;
             display: flex;
             flex-direction: row;
             align-items: center;
             justify-content: space-between;
             padding: 20px;
             margin: 10px;
-            background-color: lighten($parchment, 5%);
+            background-color: rgba(lighten($parchment, 5%), 0.4);
+            
+            &:hover {
+                background-color: lighten($parchment, 5%);
+            }
+
+            &-controls {
+                width: 70px; 
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                
+            }
+
+            & .button {
+                width: 30px;
+                height: 30px;
+                font-size: 18px;
+            }
         }
     }
 }
