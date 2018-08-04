@@ -1,0 +1,58 @@
+.button {
+    font-size: 24px;
+    color: lighten($dove-gray, 50%);
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    border: 0;
+    background-color: lighten($dove-gray, 50%);
+    box-shadow: 2px 2px lighten($dove-gray, 10%);
+    user-select: none;
+    cursor: pointer;
+    
+    &:focus {
+        outline: 0;
+    }
+
+    &:active {
+        box-shadow: 0px 0px lighten($dove-gray, 10%);
+        transform: translate(2px,2px);
+        border-bottom: 0;
+    }
+
+    &_green {
+        background-color: $green;
+        box-shadow: 2px 2px darken($green, 10%);
+
+        &:active {
+            box-shadow: 0px 0px darken($red, 10%);
+        }
+    }
+    
+    &_red {
+        background-color: $red;
+        box-shadow: 2px 2px darken($red, 10%);
+        
+        &:active {
+            box-shadow: 0px 0px darken($red, 10%);
+        }
+    }
+
+    &_blue {
+        background-color: $red;
+        box-shadow: 2px 2px darken($red, 10%);
+        
+        &:active {
+            box-shadow: 0px 0px darken($red, 10%);
+        }
+    }
+
+    &_disabled {
+        color: lighten($dove-gray, 40%);
+        cursor: default;
+        &:active {
+            transform: none;
+            box-shadow: 2px 2px lighten($dove-gray, 10%);
+        }
+    }
+}

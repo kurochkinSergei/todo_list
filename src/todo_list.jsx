@@ -1,23 +1,33 @@
-import React, {Component} from 'react';
+import React, {Component} from 'react'
+import TitleInput from './title_input'
+import Button from './button'
+import Tasks from './tasks'
 
 class ToDoList extends Component {
     constructor (props) {
         super(props)
 
         this.state = {
-            tasks: []
+            tasks: [],
+            newTaskTitle: ""
         }
 
         this.newTask = this.newTask.bind(this)
+        this.onTextChange = this.onTextChange.bind(this)
     }
     
+    // callback to get nested input component value
+    onTextChange (val) {
+        this.setState({newTaskTitle: val})
+    }
+
     newTask(e) {
         e.preventDefault()
 
-        if (this._titleInput.value) {
+        if (this.state.newTaskTitle) {
             var task = {
                 key: Date.now(),
-                title: this._titleInput.value
+                title: this.state.newTaskTitle
             }
 
             this.setState((prevState) => {
@@ -25,23 +35,23 @@ class ToDoList extends Component {
                     tasks: prevState.tasks.concat(task)
                 }
             })
-
-            console.log(this.state.tasks)
         }
         
-        this._titleInput.value = ""
+        this.state.newTaskTitle = ""
     }
 
     render() {
         return (
             <div className="todo-list">
                 <form className="new-task" onSubmit={this.newTask}>
-                    <input ref={(a) => this._titleInput = a} className="title-input" placeholder="Enter a task title"/>
-                    
+                    <TitleInput val={this.state.newTaskTitle} onTextChange ={this.onTextChange} />
+           
                     {/*TODO button as component */}
-                    <button className="submit-task-button" type="submit">+</button>     
+                    <Button className="button button_green" type="submit" text="+"/>
+                    
+                    {/* <button className="submit-task-button" type="submit">+</button>      */}
                 </form>
-
+                <Tasks entries={this.state.tasks}/>
             </div>
         )
     }
