@@ -1,13 +1,23 @@
 import React, { Component } from 'react'
+import Button from './button'
 
 class Tasks extends Component {
     constructor (props) {
         super(props)
+        
+    this.createTask = this.createTask.bind(this)    
+    }
+
+    delete(key) {
+        this.props.delete(key)
     }
 
     createTask(task) {
         return <div className="task" key = {task.key}>
-            {task.title}
+                <Button className="button button_blue" char="9998"/>
+                    {task.title}
+                <Button className="button button_green" char="10003"/>
+                <Button className="button button_red" char="10005" onClick={() => this.delete(task.key)}/>
             </div>
     }
     render() {

@@ -23,11 +23,17 @@
     }
 
     & .tasks {
-
+        color: $dove-gray;
+        margin: 30px;
+        width: 50%;
         & .task {
-
-
-
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px;
+            margin: 10px;
+            background-color: lighten($parchment, 5%);
         }
     }
 }

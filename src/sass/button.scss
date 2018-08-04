@@ -39,8 +39,9 @@
     }
 
     &_blue {
-        background-color: $red;
-        box-shadow: 2px 2px darken($red, 10%);
+        color: $dove-gray;
+        background-color: #B9CCE4;
+        box-shadow: 2px 2px darken(#B9CCE4, 10%);
         
         &:active {
             box-shadow: 0px 0px darken($red, 10%);
