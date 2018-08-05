@@ -10,6 +10,7 @@ class Task extends Component {
             isHovering: false,
             isTitleDisabled: true,
             titleInputValue: props.title,
+            isCompleted: props.isCompleted,
             buttonChar: "9998"
         };
 
@@ -18,6 +19,14 @@ class Task extends Component {
         this.toggleTitleInput = this.toggleTitleInput.bind(this);   
     }
     
+    componentDidUpdate(prevProps) {
+        if (this.props.isCompleted !== prevProps.isCompleted) {
+            this.setState({
+                isCompleted: this.props.isCompleted
+            })
+        }
+    }
+
     // callback to get nested input value
     onTextChange (val) {
         this.setState({titleInputValue: val})
@@ -50,29 +59,34 @@ class Task extends Component {
 
     render() {
         return (
-            <div className="task" 
+            <div className={`task ${this.state.isCompleted && "task_completed" }`}
                     key = {this.props.key}
                     onMouseOver={this.handleMouseHover}
                     onMouseLeave={this.handleMouseHover}>
                 
-                {/* {this.state.isHovering && */}
-                    <Button className="button button_blue" char={this.state.buttonChar}
-                    onClick= {this.toggleTitleInput}/>
-                {/* } */}
+                {!this.state.isCompleted && 
+                    <Button className="button button_blue" 
+                            char={this.state.buttonChar}
+                            onClick= {this.toggleTitleInput}/>
+                }
 
-                    <TitleInput val={this.state.titleInputValue}
-                        type="text"
-                        styleName="title-input_disabled"
-                        isDisabled={ this.state.isTitleDisabled }
-                        onTextChange={this.onTextChange}
-                     />
-                                
-                {/* {this.state.isHovering && */}
-                    <div className="task-controls">    
-                        <Button className="button button_green" char="10003"/>
-                        <Button className="button button_red" char="10005"                onClick={() => this.props.delete(this.props.keyProp)}/>
+                <TitleInput val={this.state.titleInputValue}
+                            type="text"
+                            styleName="title-input_disabled"
+                            isDisabled={ this.state.isTitleDisabled }
+                            onTextChange={this.onTextChange}
+                    />
+
+                <div className="task-controls">
+                    {!this.state.isCompleted &&    
+                        <Button className="button button_green" 
+                                char="10003"
+                                onClick={() => this.props.complete(this.props.keyProp)}/>
+                    }
+                    <Button className="button button_red" 
+                            char="10005"
+                            onClick={() => this.props.delete(this.props.keyProp)}/>
                     </div>
-                {/* }     */}
             </div>
         )
     }

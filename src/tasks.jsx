@@ -9,10 +9,15 @@ class Tasks extends Component {
         this.createTask = this.createTask.bind(this)
         this.delete = this.delete.bind(this)
         this.editTask = this.editTask.bind(this)
+        this.complete = this.complete.bind(this)
     }
 
     delete(key) {
         this.props.delete(key)
+    }
+
+    complete(key) {
+        this.props.complete(key)
     }
 
     editTask(key, newTitle) {
@@ -23,7 +28,9 @@ class Tasks extends Component {
         return <Task key={task.key} 
                      keyProp={task.key} 
                      title={task.title}
+                     isCompleted = {task.isCompleted}
                      delete={this.delete}
+                     complete={this.complete}
                      editTask={this.editTask}/>
     }
 

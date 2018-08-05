@@ -49,6 +49,23 @@
                 display: flex;
                 flex: 0.6;
             }
+
+            &_completed {
+                background-color: rgba($green, 0.1);
+
+                &:hover {
+                    background-color: rgba($green, 0.2);
+                }
+
+                & .title-input {
+                    flex: 0.7;
+                    text-decoration: line-through;
+                }
+
+                & .task-controls {
+                    justify-content: center;
+                }
+            }
         }
     }
 }

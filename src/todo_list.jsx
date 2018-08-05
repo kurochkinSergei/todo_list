@@ -14,9 +14,11 @@ class ToDoList extends Component {
         }
 
         this.newTask = this.newTask.bind(this)
+        this.updateTasksState = this.updateTasksState.bind(this)
         this.getTasksFromStorage = this.getTasksFromStorage.bind(this)
         this.onTextChange = this.onTextChange.bind(this)
         this.deleteTask = this.deleteTask.bind(this)
+        this.completeTask = this.completeTask.bind(this)
         this.editTaskTitle = this.editTaskTitle.bind(this)  
     }
 
@@ -28,6 +30,15 @@ class ToDoList extends Component {
         }
     }
     
+    updateTasksState = (tasksArray) => {
+        localStorage.setItem("tasks", JSON.stringify(tasksArray))
+
+        this.setState({
+            tasks: tasksArray
+        })    
+    }
+
+
     // callback to get nested input value
     onTextChange (val) {
         this.setState({newTaskTitle: val})
@@ -37,19 +48,15 @@ class ToDoList extends Component {
         e.preventDefault()
 
         if (this.state.newTaskTitle) {
-            var task = {
+            var task = [{
                 key: Date.now(),
-                title: this.state.newTaskTitle
-            }
+                title: this.state.newTaskTitle,
+                isCompleted: false
+            }]
 
-            this.setState((prevState) => {
-                var newTasksArray = prevState.tasks.concat(task)
-                
-                localStorage.setItem("tasks", JSON.stringify(newTasksArray))
-                return { 
-                    tasks: newTasksArray
-                }
-            })
+            var newTasksArray = task.concat(this.state.tasks)
+            
+            this.updateTasksState(newTasksArray)
         }
         
         this.setState({newTaskTitle: ""})
@@ -60,11 +67,19 @@ class ToDoList extends Component {
             return (task.key !== key)
         })
 
-        localStorage.setItem("tasks", JSON.stringify(filteredTasks))
+        this.updateTasksState(filteredTasks)
+    }
 
-        this.setState({
-            tasks: filteredTasks
+    completeTask(key) {
+        var updatedTasks = this.state.tasks.map(function (task) { 
+            if (task.key === key) {
+                return {...task, isCompleted: true}                
+            } else {
+                return task
+            }
         })
+        
+       this.updateTasksState(updatedTasks)
     }
 
     editTaskTitle(key, newTitle) {
@@ -93,6 +108,7 @@ class ToDoList extends Component {
 
                 <Tasks entries={this.state.tasks} 
                        delete={this.deleteTask}
+                       complete={this.completeTask}
                        editTaskTitle={this.editTaskTitle}/>
             </div>
         )
