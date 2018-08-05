@@ -8,17 +8,23 @@ class Tasks extends Component {
 
         this.createTask = this.createTask.bind(this)
         this.delete = this.delete.bind(this)
+        this.editTask = this.editTask.bind(this)
     }
 
     delete(key) {
         this.props.delete(key)
     }
 
+    editTask(key, newTitle) {
+        this.props.editTaskTitle(key, newTitle)
+    }
+
     createTask(task) {
         return <Task key={task.key} 
                      keyProp={task.key} 
                      title={task.title}
-                     delete={this.delete}/>
+                     delete={this.delete}
+                     editTask={this.editTask}/>
     }
 
     render() {

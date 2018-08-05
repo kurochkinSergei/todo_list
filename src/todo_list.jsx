@@ -16,7 +16,8 @@ class ToDoList extends Component {
         this.newTask = this.newTask.bind(this)
         this.getTasksFromStorage = this.getTasksFromStorage.bind(this)
         this.onTextChange = this.onTextChange.bind(this)
-        this.deleteTask = this.deleteTask.bind(this)  
+        this.deleteTask = this.deleteTask.bind(this)
+        this.editTaskTitle = this.editTaskTitle.bind(this)  
     }
 
     getTasksFromStorage = () => {
@@ -60,9 +61,25 @@ class ToDoList extends Component {
         })
 
         localStorage.setItem("tasks", JSON.stringify(filteredTasks))
-        
+
         this.setState({
             tasks: filteredTasks
+        })
+    }
+
+    editTaskTitle(key, newTitle) {
+        var updatedTasks = this.state.tasks.map(function (task) { 
+            if (task.key === key) {
+                return {...task, title: newTitle}                
+            } else {
+                return task
+            }
+        })
+
+        localStorage.setItem("tasks", JSON.stringify(updatedTasks))
+        
+        this.setState({
+            tasks: updatedTasks
         })
     }
 
@@ -73,7 +90,10 @@ class ToDoList extends Component {
                     <TitleInput val={this.state.newTaskTitle} onTextChange ={this.onTextChange} />
                     <Button className="button button_green" type="submit" char="43"/>
                 </form>
-                <Tasks entries={this.state.tasks} delete={this.deleteTask}/>
+
+                <Tasks entries={this.state.tasks} 
+                       delete={this.deleteTask}
+                       editTaskTitle={this.editTaskTitle}/>
             </div>
         )
     }
