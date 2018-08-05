@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Button from './button'
+import TitleInput from './title_input'
 
 class Task extends Component {
     constructor (props) {
@@ -7,9 +8,12 @@ class Task extends Component {
     
         this.state = {
             isHovering: false,
+            isTitleDisabled: true,
+            buttonChar: "9998"
         };
 
-        this.handleMouseHover = this.handleMouseHover.bind(this);    
+        this.handleMouseHover = this.handleMouseHover.bind(this); 
+        this.toggleTitleInput = this.toggleTitleInput.bind(this);   
     }
     
     handleMouseHover() {
@@ -22,6 +26,16 @@ class Task extends Component {
         };
     }
 
+    toggleTitleInput() {
+        var newChar = this.state.isTitleDisabled ? "10003" : "9998" 
+        this.setState({
+            isTitleDisabled: !this.state.isTitleDisabled,
+            buttonChar: newChar
+        })
+
+        console.log(this.state.buttonChar)
+    }
+
     render() {
         return (
             <div className="task" 
@@ -30,9 +44,16 @@ class Task extends Component {
                     onMouseLeave={this.handleMouseHover}>
                 
                 {/* {this.state.isHovering && */}
-                    <Button className="button button_blue" char="9998"/>
+                    <Button className="button button_blue" char={this.state.buttonChar}
+                    onClick= {this.toggleTitleInput}/>
                 {/* } */}
-                    {this.props.title}
+
+                    <TitleInput val={this.props.title}
+                        type="text"
+                        styleName="title-input_disabled"
+                        isDisabled={ this.state.isTitleDisabled }
+                     />
+                                
                 
                 {/* {this.state.isHovering && */}
                     <div className="task-controls">    

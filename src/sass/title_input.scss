@@ -1,0 +1,31 @@
+.title-input {
+    margin-right: 10px;
+    background: transparent;
+    font-size: 18px;
+    color: $dove-gray;
+    text-align: center;
+    height: 40px;
+    font-family: $raleway;
+    outline: none;
+    border: 0;
+    border-bottom: 2px solid lighten($dove-gray,5%);
+
+    &_disabled {
+        border: 0;
+        cursor: default;
+        border-bottom: 2px solid rgba(lighten($dove-gray,5%), 0);
+    }
+
+    &.marquee {
+        text-indent: 10%;
+        animation: marquee 8s infinite;
+        animation-timing-function: linear;
+        animation-delay: 3s;
+    }
+}
+
+@keyframes marquee {
+    0% {text-indent: 10%;}
+    50% {text-indent: -50%;}
+    100% {text-indent: 10%;}
+}

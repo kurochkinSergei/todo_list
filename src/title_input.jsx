@@ -15,7 +15,9 @@ class TitleInput extends Component {
     render() {
         return (
             <input value={ this.props.val }
-                   className="title-input"
+                   type={this.props.type}
+                   className={`title-input ${this.props.isDisabled && "title-input_disabled" }`}
+                   disabled={ this.props.isDisabled }
                    placeholder="Enter a task title"
                    ref={(a) => this._titleInput = a}
                    onChange={ this.onTextChange }/>
