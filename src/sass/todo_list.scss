@@ -44,11 +44,11 @@
             }
 
             &-controls {
+                flex: 0.3;
                 width: 70px; 
                 display: flex;
                 flex-direction: row;
                 justify-content: space-between;
-                
             }
 
             & .button {
