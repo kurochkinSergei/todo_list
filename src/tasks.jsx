@@ -7,10 +7,10 @@ class Tasks extends Component {
     constructor (props) {
         super(props)
 
-        this.createTask = this.createTask.bind(this)
         this.delete = this.delete.bind(this)
-        this.editTask = this.editTask.bind(this)
         this.complete = this.complete.bind(this)
+        this.editTask = this.editTask.bind(this)
+        this.createTask = this.createTask.bind(this)
         this.sortTasks = this.sortTasks.bind(this)
     }
 
@@ -46,7 +46,11 @@ class Tasks extends Component {
 
         return (
             <div className="tasks">
-                <SortBlock sortTasks={this.sortTasks}/>
+                <FlipMove duration={300} easing="ease-in" delay={300}>
+                    {this.props.entries.length > 0 && 
+                        <SortBlock sortTasks={this.sortTasks}/>
+                    }
+                </FlipMove>
                 <FlipMove duration={300} easing="ease-in-out">
                     {tasks}
                 </FlipMove>    

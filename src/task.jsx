@@ -7,15 +7,13 @@ class Task extends Component {
         super(props)
     
         this.state = {
-            isHovering: false,
             isTitleDisabled: true,
             titleInputValue: props.title,
             isCompleted: props.isCompleted,
-            buttonChar: "9998"
+            editButtonChar: "9998"
         };
 
         this.onTextChange = this.onTextChange.bind(this);
-        this.handleMouseHover = this.handleMouseHover.bind(this); 
         this.toggleTitleInput = this.toggleTitleInput.bind(this);   
     }
     
@@ -32,29 +30,23 @@ class Task extends Component {
         this.setState({titleInputValue: val})
     }
 
-    handleMouseHover() {
-        this.setState(this.toggleHoverState);
-    }
-
-    toggleHoverState(state) {
-        return {
-          isHovering: !state.isHovering,
-        };
-    }
-
     toggleTitleInput() {
-        // input is enabled
-        if (!this.state.isTitleDisabled) {
-            //save new task title
-            this.props.editTask(this.props.keyProp, this.state.titleInputValue)
+        if (this.state.titleInputValue) {
+            // input is enabled
+            if (!this.state.isTitleDisabled) {
+                //save new task title
+                this.props.editTask(this.props.keyProp,this.state.titleInputValue)
+            }
+
+            var newChar = this.state.isTitleDisabled ? "10003" : "9998"
+
+            this.setState({
+                isTitleDisabled: !this.state.isTitleDisabled,
+                editButtonChar: newChar
+            })
+        } else {
+            
         }
-
-        var newChar = this.state.isTitleDisabled ? "10003" : "9998"
-
-        this.setState({
-            isTitleDisabled: !this.state.isTitleDisabled,
-            buttonChar: newChar
-        })
     }
 
     render() {
@@ -66,7 +58,7 @@ class Task extends Component {
                 
                 {!this.state.isCompleted && 
                     <Button className="button button_blue" 
-                            char={this.state.buttonChar}
+                            char={this.state.editButtonChar}
                             onClick= {this.toggleTitleInput}/>
                 }
 
@@ -74,8 +66,8 @@ class Task extends Component {
                             type="text"
                             styleName="title-input_disabled"
                             isDisabled={ this.state.isTitleDisabled }
-                            onTextChange={this.onTextChange}
-                    />
+                            onTextChange={this.onTextChange}/>
+
                 { this.state.isTitleDisabled &&
                     <div className="task-controls">
                         {!this.state.isCompleted &&    

@@ -40,7 +40,11 @@
                 width: 70px; 
                 display: flex;
                 flex-direction: row;
-                justify-content: space-between;
+                justify-content: center;
+
+                & .button:first-child {
+                    margin-right: 20px;
+                }
             }
 
             & .button {
@@ -69,12 +73,13 @@
                 }
 
                 & .title-input {
+                    margin-left: 30px;
                     flex: 0.7;
                     text-decoration: line-through;
                 }
 
-                & .task-controls {
-                    justify-content: center;
+                & .button {
+                    margin: 0 !important;
                 }
             }
         }
