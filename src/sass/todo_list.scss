@@ -14,6 +14,11 @@
         margin: 30px 0;
         width: 50%;
         
+        & .sort-block {
+
+
+        }
+
         & .task {
             text-align: center;
             min-width: 200px;
@@ -49,6 +54,12 @@
                 display: flex;
                 flex: 0.6;
             }
+            
+            &_editing {
+                & .title-input {
+                    flex: 0.7;
+                }
+            }
 
             &_completed {
                 background-color: rgba($green, 0.1);
@@ -66,6 +77,22 @@
                     justify-content: center;
                 }
             }
+        }
+    }
+
+    & .sort-block {
+        font-size: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        padding: 0 20px;
+
+        & .button {
+            margin-left: 10px;
+            color: $dove-gray;
+            width: 24px;
+            height: 24px;
+            font-size: 12px;
         }
     }
 }

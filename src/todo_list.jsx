@@ -7,7 +7,6 @@ class ToDoList extends Component {
     constructor (props) {
         super(props)
         
-
         this.state = {
             tasks: this.getTasksFromStorage(),
             newTaskTitle: ""
@@ -19,7 +18,8 @@ class ToDoList extends Component {
         this.onTextChange = this.onTextChange.bind(this)
         this.deleteTask = this.deleteTask.bind(this)
         this.completeTask = this.completeTask.bind(this)
-        this.editTaskTitle = this.editTaskTitle.bind(this)  
+        this.editTaskTitle = this.editTaskTitle.bind(this)
+        this.sortTasks = this.sortTasks.bind(this)  
     }
 
     getTasksFromStorage = () => {
@@ -37,7 +37,6 @@ class ToDoList extends Component {
             tasks: tasksArray
         })    
     }
-
 
     // callback to get nested input value
     onTextChange (val) {
@@ -91,10 +90,26 @@ class ToDoList extends Component {
             }
         })
 
-        localStorage.setItem("tasks", JSON.stringify(updatedTasks))
+        this.updateTasksState(updatedTasks)
+    }
+
+    sortTasks(direction) {
+        var rVal = direction === "asc" ? 1 : -1;
+        
+        var sortedTasks = this.state.tasks.sort(function (a, b) {
+            if (a.title.toUpperCase() > b.title.toUpperCase()) {
+                return rVal;
+            }
+              
+            if (a.title.toUpperCase() < b.title.toUpperCase()) {
+                return -rVal;
+            }
+
+            return 0;
+        })
         
         this.setState({
-            tasks: updatedTasks
+            tasks: sortedTasks
         })
     }
 
@@ -109,7 +124,8 @@ class ToDoList extends Component {
                 <Tasks entries={this.state.tasks} 
                        delete={this.deleteTask}
                        complete={this.completeTask}
-                       editTaskTitle={this.editTaskTitle}/>
+                       editTaskTitle={this.editTaskTitle}
+                       sortTasks={this.sortTasks}/>
             </div>
         )
     }

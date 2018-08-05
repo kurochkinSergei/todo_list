@@ -76,17 +76,18 @@ class Task extends Component {
                             isDisabled={ this.state.isTitleDisabled }
                             onTextChange={this.onTextChange}
                     />
-
-                <div className="task-controls">
-                    {!this.state.isCompleted &&    
-                        <Button className="button button_green" 
-                                char="10003"
-                                onClick={() => this.props.complete(this.props.keyProp)}/>
-                    }
-                    <Button className="button button_red" 
-                            char="10005"
-                            onClick={() => this.props.delete(this.props.keyProp)}/>
-                    </div>
+                { this.state.isTitleDisabled &&
+                    <div className="task-controls">
+                        {!this.state.isCompleted &&    
+                            <Button className="button button_green" 
+                                    char="10003"
+                                    onClick={() => this.props.complete(this.props.keyProp)}/>
+                        }
+                        <Button className="button button_red" 
+                                char="10005"
+                                onClick={() => this.props.delete(this.props.keyProp)}/>
+                    </div> 
+                }
             </div>
         )
     }
