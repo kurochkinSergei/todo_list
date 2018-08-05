@@ -1,4 +1,5 @@
 .button {
+    opacity: 0.8;
     font-size: 24px;
     color: darken($white-lilac, 5%);
     // color: lighten($dove-gray, 40%);
@@ -11,6 +12,10 @@
     user-select: none;
     cursor: pointer;
     
+    &:hover {
+        opacity: 1;
+    }
+
     &:focus {
         outline: 0;
     }

@@ -6,18 +6,28 @@ import Tasks from './tasks'
 class ToDoList extends Component {
     constructor (props) {
         super(props)
+        
 
         this.state = {
-            tasks: [],
+            tasks: this.getTasksFromStorage(),
             newTaskTitle: ""
         }
 
         this.newTask = this.newTask.bind(this)
+        this.getTasksFromStorage = this.getTasksFromStorage.bind(this)
         this.onTextChange = this.onTextChange.bind(this)
         this.deleteTask = this.deleteTask.bind(this)  
     }
+
+    getTasksFromStorage = () => {
+        if (localStorage.getItem("tasks") !== null) {
+            return JSON.parse(localStorage.getItem("tasks"))
+        } else {
+            return []
+        }
+    }
     
-    // callback to get nested input component value
+    // callback to get nested input value
     onTextChange (val) {
         this.setState({newTaskTitle: val})
     }
@@ -32,8 +42,11 @@ class ToDoList extends Component {
             }
 
             this.setState((prevState) => {
+                var newTasksArray = prevState.tasks.concat(task)
+                
+                localStorage.setItem("tasks", JSON.stringify(newTasksArray))
                 return { 
-                    tasks: prevState.tasks.concat(task)
+                    tasks: newTasksArray
                 }
             })
         }
@@ -46,6 +59,8 @@ class ToDoList extends Component {
             return (task.key !== key)
         })
 
+        localStorage.setItem("tasks", JSON.stringify(filteredTasks))
+        
         this.setState({
             tasks: filteredTasks
         })
